@@ -2,7 +2,7 @@
 I saw a similar script to this which was paid, and just opened a inventory where you took the items out so I decided to remake it, make it diffrent and FREE!
 
 ## Links
-- [Cfx.re Forums]( Once Approved )
+- [Cfx.re Forums](https://forum.cfx.re/t/free-yetti-rob-containers/5234293)
 - [Showcase](https://www.youtube.com/watch?v=1jyHGkU9WQE)
 
 ## Features
