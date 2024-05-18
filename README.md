@@ -4,7 +4,7 @@ I saw a similar script to this which was paid, and just opened a inventory where
 ## Links
 - [Cfx.re Forums](https://forum.cfx.re/t/free-yetti-rob-containers/5234293)
 - [Showcase](https://www.youtube.com/watch?v=1jyHGkU9WQE)
-- [Documentation[(https://yetti-development.gitbook.io/yetti-development/free-scripts/yetti-rob-containers/showcase)
+- [Documentation](https://yetti-development.gitbook.io/yetti-development/free-scripts/yetti-rob-containers/showcase)
 
 ## Features
 - Supports all frameworks which can use the dependencies
