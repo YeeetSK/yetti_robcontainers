@@ -3,7 +3,7 @@ game "gta5"
 lua54 'yes'
 
 author 'Yetti Development'
-description 'GoPostal Delivery Script'
+description 'Container Robbery Script'
 
 client_scripts {
     'client/client.lua',
