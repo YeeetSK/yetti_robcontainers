@@ -2,9 +2,37 @@
 --- Main Loop
 --
 
+function SendDispatch()
+    if Config.Dispatch == 'none' then return end
+
+    if Config.Dispatch == 'ps' then
+        exports['ps-dispatch']:SuspiciousActivity()
+    elseif Config.Dispatch == 'cd' then
+        local data = exports['cd_dispatch']:GetPlayerInfo()
+        TriggerServerEvent('cd_dispatch:AddNotification', {
+            job_table = Config.PoliceJobs,
+            coords = data.coords,
+            title = Config.DispatchCode,
+            message = Config.DispatchMessage,
+            flash = 0,
+            unique_id = data.unique_id,
+            sound = 1,
+            blip = {
+                sprite = 66,
+                scale = 0.7,
+                colour = 0,
+                flashes = false,
+                text = Config.DispatchCode,
+                time = 5,
+                radius = 0,
+            }
+        })
+    end
+end
+
 for k, v in ipairs(Config.ContainerCoords) do
     local inCooldown = false
-    local coords = v.coords
+    local coords = v
     local exit = json.decode('{"x": 5.0, "y": 0.0, "z": 1.0, "h":2.263}')
     
     local claimedBox = false
@@ -28,10 +56,13 @@ for k, v in ipairs(Config.ContainerCoords) do
                     if itemCount >= 1 then
                         local success = lib.skillCheck({'medium', 'easy', 'medium', 'easy'}, {'e'})
                         if success then
+                            TriggerServerEvent('yetti_robcontainers:server:entered')
                             DoScreenFadeOut(500)
-                            Wait(1500)
-                            DoScreenFadeIn(500)
+                            Wait(750)
                             SetEntityCoords(PlayerPedId(), coords.x + exit.x, coords.y + exit.y, coords.z - 10 + exit.z)
+                            Wait(750)
+                            DoScreenFadeIn(500)
+
                             inContainer = true
                         else
                             local breakChance = math.random(1,5)
@@ -42,7 +73,7 @@ for k, v in ipairs(Config.ContainerCoords) do
                                 duration = 5000
                             })
                             if breakChance == 1 then
-                                TriggerServerEvent('robcontainers:server:removeItem', Config.RequiredItem)
+                                TriggerServerEvent('yetti_robcontainers:server:removeItem', Config.RequiredItem)
                             end
                         end
                     else
@@ -83,32 +114,14 @@ for k, v in ipairs(Config.ContainerCoords) do
                     inContainer = false
                     inCooldown = true
                     DoScreenFadeOut(500)
-                    Wait(1500)
-                    DoScreenFadeIn(500)
+                    Wait(750)
                     SetEntityCoords(PlayerPedId(), coords.x, coords.y, coords.z)
-                    if Config.Dispatch == 'ps' then
-                        exports['ps-dispatch']:SuspiciousActivity()
-                    elseif Config.Dispatch == 'cd' then
-                        local data = exports['cd_dispatch']:GetPlayerInfo()
-                        TriggerServerEvent('cd_dispatch:AddNotification', {
-                            job_table = Config.PoliceJobs,
-                            coords = data.coords,
-                            title = Config.DispatchCode,
-                            message = Config.DispatchMessage,
-                            flash = 0,
-                            unique_id = data.unique_id,
-                            sound = 1,
-                            blip = {
-                                sprite = 66, 
-                                scale = 0.7, 
-                                colour = 0,
-                                flashes = false, 
-                                text = Config.DispatchCode,
-                                time = 5,
-                                radius = 0,
-                            }
-                        })
-                    end
+                    Wait(750)
+                    DoScreenFadeIn(500)
+
+                    TriggerServerEvent('yetti_robcontainers:server:left')
+                    SendDispatch()
+
                     Wait(Config.Cooldown * 1000)
                     claimedBox = false
                     inCooldown = false
@@ -148,7 +161,7 @@ for k, v in ipairs(Config.ContainerCoords) do
                         },
                   }) then
                     claimedBox = true
-                    TriggerServerEvent('robcontainers:server:reward', true)
+                    TriggerServerEvent('yetti_robcontainers:server:reward')
                   end
 
                 end,
