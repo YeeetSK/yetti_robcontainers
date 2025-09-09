@@ -76,8 +76,12 @@ RegisterNetEvent('yetti_robcontainers:server:reward', function ()
                 end)
 
                 for k, v in ipairs(Config.Reward) do
-                    exports.ox_inventory:AddItem(src, v, 1)
+                    local chance = math.random(1,100)
+                    if chance < v.chance then
+                        exports.ox_inventory:AddItem(src, v.item, v.amount)
+                    end
                 end
+
                 return -- return so person doesn't get kicked 
             end
         end

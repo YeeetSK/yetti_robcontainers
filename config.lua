@@ -21,12 +21,14 @@ Config.ContainerCoords = {
 }
 
 Config.Reward = { -- Rewards to pick randomlny from
-    'weapon_pistol',
-    'at_suppressor_light',
-    'paperbag'
+    { item = 'weapon_pistol', chance = 50, amount = math.random(3,5) },
+    { item = 'money', chance = 100, amount = math.random(300,1000) },
+    -- 'weapon_pistol',
+    -- 'at_suppressor_light',
+    -- 'paperbag'
 }
 
-Config.Cooldown = 20 -- In seconds
+Config.Cooldown = 120 -- In seconds
 
 Config.TargetLabelBreak = 'Break Into Container' -- Label on target to break into
 Config.TargetIconBreak = 'fa-solid fa-hammer' -- Icon on target to break into - https://fontawesome.com/icons
