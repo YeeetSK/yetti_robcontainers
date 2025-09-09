@@ -46,3 +46,17 @@ Config.FailTitle = 'Failed'
 Config.FailDescription = 'You failed to lockpick the container'
 
 Config.ProgressBarLabel = 'Opening Box'
+
+
+-- Lock the config to make cheaters unable to edit code
+function protect(tbl)
+    return setmetatable({}, {
+        __index = tbl,
+        __newindex = function(t, key, value)
+            error("attempting to change constant " ..
+                   tostring(key) .. " to " .. tostring(value), 2)
+        end
+    })
+end
+
+Config = protect(Config)
