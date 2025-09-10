@@ -59,14 +59,17 @@ for k, v in ipairs(Config.ContainerCoords) do
         }
     })
     
-    local shell = CreateObject('container_shell', coords.x, coords.y, coords.z - 10, true)
+    lib.requestModel('container_shell')
+    local shell = CreateObject('container_shell', coords.x, coords.y, coords.z - 10, false)
     SetEntityHeading(shell, 270.7507)
     FreezeEntityPosition(shell, true)
+    SetModelAsNoLongerNeeded('container_shell')
 
-    local box = CreateObject('m23_1_prop_m31_crate_bones', coords.x - 5, coords.y, coords.z - 10, true)
+    lib.requestModel('m23_1_prop_m31_crate_bones')
+    local box = CreateObject('m23_1_prop_m31_crate_bones', coords.x - 5, coords.y, coords.z - 10, false)
     SetEntityHeading(box, 270.7507)
     FreezeEntityPosition(box, true)
-
+    SetModelAsNoLongerNeeded('m23_1_prop_m31_crate_bones')
 
     exports.ox_target:addBoxZone({
         coords = vector3(coords.x + exit.x, coords.y + exit.y, coords.z - 10 + exit.z),
