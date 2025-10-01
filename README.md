@@ -15,9 +15,9 @@ I saw a similar script to this which was paid, and just opened a inventory where
 - Drag & drop install
 
 ## Dependencies
-- [ox_lib](https://github.com/overextended/ox_lib)
-- [ox_target](https://github.com/overextended/ox_target)
-- [ox_inventory](https://github.com/overextended/ox_inventory)
+- [ox_lib](https://github.com/communityox/ox_lib)
+- [ox_target](https://github.com/communityox/ox_target)
+- [ox_inventory](https://github.com/communityox/ox_inventory)
 - [Starter Shells](https://forum.cfx.re/t/free-props-starter-shells-for-housing-scripts/4826922)
 
 ## Installation 
